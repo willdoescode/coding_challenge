@@ -29,22 +29,19 @@ func append_front(n Node, elem int) Node {
 	return Node{elem: elem, next: &n}
 }
 
-func (n *Node) find(num int, offset int) int {
-	offset++
+func (n *Node) find(num int, state int) int {
 	if n.elem == num {
-		return offset
+		return state
 	}
-	offset++
-	n.next.find(num, offset)
-	return offset
+	state = state + 1
+	return n.next.find(num, state)
 }
 
 func main() {
 	h := Node{elem: 1, next: nil}
-	fmt.Println(h.display())
-	h.append(5)
-	fmt.Println(h.display())
-	h = append_front(h, 6)
+	for i := 2; i < 20; i++ {
+		h.append(i)
+	}
 	fmt.Println(h.display())
 	fmt.Println(h.find(5, 0))
 }
