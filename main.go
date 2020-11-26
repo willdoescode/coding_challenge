@@ -68,11 +68,15 @@ func (n *Node) rm_num(num int) {
 	n.next.rm_num(num)
 }
 
+func (n *Node) append_range(start int, end int) {
+	for i := start; i < end; i++ {
+		n.append(i)
+	}
+}
+
 func main() {
 	h := Node{elem: 0, next: nil}
-	for i := 1; i < 20; i++ {
-		h.append(i)
-	}
+	h.append_range(1, 20)
 	fmt.Println(h.display())
 	h.rm_index(5)
 	fmt.Println(h.display())
