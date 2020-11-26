@@ -37,11 +37,22 @@ func (n *Node) find(num int, state int) int {
 	return n.next.find(num, state)
 }
 
+func (n *Node) len() int {
+	h := n
+	state := 0
+	for h.next != nil {
+		state = state + 1
+		h = h.next
+	}
+	return state
+}
+
 func main() {
-	h := Node{elem: 1, next: nil}
-	for i := 2; i < 20; i++ {
+	h := Node{elem: 0, next: nil}
+	for i := 0; i < 20; i++ {
 		h.append(i)
 	}
 	fmt.Println(h.display())
 	fmt.Println(h.find(5, 0))
+	fmt.Println(h.len())
 }
