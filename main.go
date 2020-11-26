@@ -47,12 +47,35 @@ func (n *Node) len() int {
 	return state
 }
 
+func (n *Node) rm_index(index int) {
+	if index == 0 {
+		n.next = n.next.next
+		return
+	}
+	n.next.rm_index(index - 1)
+}
+
+func (n *Node) rm_num(num int) {
+	if n.elem == num {
+		n.elem = n.next.elem
+		n.next = n.next.next
+		return
+	}
+	if n.next.elem == num {
+		n.next = n.next.next
+		return
+	}
+	n.next.rm_num(num)
+}
+
 func main() {
 	h := Node{elem: 0, next: nil}
-	for i := 0; i < 20; i++ {
+	for i := 1; i < 20; i++ {
 		h.append(i)
 	}
 	fmt.Println(h.display())
-	fmt.Println(h.find(5, 0))
-	fmt.Println(h.len())
+	h.rm_index(5)
+	fmt.Println(h.display())
+	h.rm_num(3)
+	fmt.Println(h.display())
 }
