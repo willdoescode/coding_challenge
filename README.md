@@ -5,3 +5,9 @@
 ```bash
 go run *.go
 ```
+
+## Building 
+
+```bash
+go build
+```
